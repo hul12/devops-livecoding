@@ -60,9 +60,9 @@ jobs:
           push: ${{ github.ref == 'refs/heads/main' }}  # Publie uniquement sur la branche main
 
       # Étape pour construire et pousser l'image httpd
-      - name: Build image and push httpd
+      - name: Build image and push http-server
         uses: docker/build-push-action@v3
         with:
-          context: ./htt-server  # Chemin vers votre Dockerfile pour httpd
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-htt-server:latest
+          context: ./http-server  # Chemin vers votre Dockerfile pour httpd
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-http-server:latest
           push: ${{ github.ref == 'refs/heads/main' }}  # Publie uniquement sur la branche mains
