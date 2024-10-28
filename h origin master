@@ -1,0 +1,23 @@
+[33mcommit a757b9f13ae616a60057aa713f981920452fd20f[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: vdelacharriere <vdelacharriere@takima.fr>
+Date:   Thu Oct 24 17:20:54 2024 +0200
+
+    Added target directory to .gitignore
+
+[33mcommit 79da4368316304ea2d97d0fd9479cd9059ab9f7a[m
+Author: vdelacharriere <vdelacharriere@takima.fr>
+Date:   Fri Oct 18 23:18:26 2024 +0200
+
+    My first commit
+
+[33mcommit 10d1e42ec030f5431b13099da8422a2c75399fe7[m
+Author: Guillaume ROUSSEL <guillaume.roussel@dreev.com>
+Date:   Tue Oct 24 16:30:29 2023 +0200
+
+    Correction TP1
+
+[33mcommit 30d596937f89f88a557c38e4a1b8905e890b0637[m
+Author: groussel-takima <118525192+groussel-takima@users.noreply.github.com>
+Date:   Tue Oct 24 14:56:19 2023 +0200
+
+    Initial commit
