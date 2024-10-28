@@ -4,11 +4,9 @@ on:
   # Le workflow se déclenche sur un push ou une pull request vers les branches "main" et "dev"
   push:
     branches:
-      - main
       - dev
   pull_request:
     branches:
-      - main
       - dev
 
 jobs:
@@ -31,39 +29,3 @@ jobs:
       - name: Build and test with Maven
         run: mvn -B verify sonar:sonar -Dsonar.projectKey=hul12_tp2 -Dsonar.organization=hul12 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}  --file ./simple-api/pom.xml
 
-  build-and-push-docker-image:
-    needs: test-backend  # Ce job dépend du job test-backend
-    runs-on: ubuntu-22.04
-
-    steps:
-      # Étape pour vérifier le code source
-      - name: Checkout code
-        uses: actions/checkout@v2.5.0
-
-      # Étape pour se connecter à Docker Hub
-      - name: Login to DockerHub
-        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
-
-      # Étape pour construire et pousser l'image du backend
-      - name: Build image and push backend
-        uses: docker/build-push-action@v3
-        with:
-          context: ./simple-api  # Chemin vers votre Dockerfile pour le backend
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-simple-api:latest
-          push: ${{ github.ref == 'refs/heads/main' }}  # Publie uniquement sur la branche main
-
-      # Étape pour construire et pousser l'image de la base de données
-      - name: Build image and push database
-        uses: docker/build-push-action@v3
-        with:
-          context: ./database  # Chemin vers votre Dockerfile pour la base de données
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-database:latest
-          push: ${{ github.ref == 'refs/heads/main' }}  # Publie uniquement sur la branche main
-
-      # Étape pour construire et pousser l'image httpd
-      - name: Build image and push http-server
-        uses: docker/build-push-action@v3
-        with:
-          context: ./http-server  # Chemin vers votre Dockerfile pour httpd
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-http-server:latest
-          push: ${{ github.ref == 'refs/heads/main' }}  # Publie uniquement sur la branche mains
