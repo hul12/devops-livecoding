@@ -28,4 +28,4 @@ jobs:
 
       # Étape pour construire et tester l’application avec Maven
       - name: Build and test with Maven
-        run: mvn clean verify
+        run: mvn clean verify --file ./simple-api/pom.xml
