@@ -41,14 +41,14 @@ jobs:
 
       # Étape pour se connecter à Docker Hub
       - name: Login to DockerHub
-        run: echo "${{ token.DOCKERHUB_TOKEN }}" | docker login -u "${{ token.DOCKERHUB_USERNAME }}" --password-stdin
+        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
       # Étape pour construire et pousser l'image du backend
       - name: Build image and push backend
         uses: docker/build-push-action@v3
         with:
           context: ./simple-api  # Chemin vers votre Dockerfile pour le backend
-          tags: ${{ token.DOCKERHUB_USERNAME }}/tp-devops-simple-api:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-simple-api:latest
           push: ${{ github.ref == 'refs/heads/main' }}  # Publie uniquement sur la branche main
 
       # Étape pour construire et pousser l'image de la base de données
@@ -56,13 +56,13 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./database  # Chemin vers votre Dockerfile pour la base de données
-          tags: ${{ token.DOCKERHUB_USERNAME }}/tp-devops-database:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-database:latest
           push: ${{ github.ref == 'refs/heads/main' }}  # Publie uniquement sur la branche main
 
       # Étape pour construire et pousser l'image httpd
-      - name: Build image and push backend
+      - name: Build image and push httpd
         uses: docker/build-push-action@v3
         with:
           context: ./httpd  # Chemin vers votre Dockerfile pour httpd
-          tags: ${{ token.DOCKERHUB_USERNAME }}/tp-devops-httpd:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-httpd:latest
           push: ${{ github.ref == 'refs/heads/main' }}  # Publie uniquement sur la branche main
