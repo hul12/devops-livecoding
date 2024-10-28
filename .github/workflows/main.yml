@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '17'
-          distribution: 'correto'
+          distribution: 'corretto'
 
       # Étape pour construire et tester l’application avec Maven
       - name: Build and test with Maven
